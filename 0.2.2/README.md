@@ -69,7 +69,7 @@ A decision flowchart, top to bottom, with edge labels and a dashed back edge:
 
 ![Screenshot of a decision flowchart with a diamond, yes/no branches and a retry edge](images/flowchart-decision.png)
 
-A research pipeline placed on the grid, with groups (nodes may hold any content, e.g. `image(...)` plots):
+A research pipeline placed on the grid, with groups given by name or by the grid corners they span (nodes may hold any content, e.g. `image(...)` plots):
 
 ```typst
 #set text(size: 9pt)
@@ -96,8 +96,8 @@ A research pipeline placed on the grid, with groups (nodes may hold any content,
   edge("ecg", "dct1", "cat", "idct", "mfcc", "x", "tpl", "match", "metrics"),
   edge("ppg", "dct2", "cat"),
 
-  group([Chaotic projection], "pwd", "sha", "map", "smat"),
-  group([Signal fusion], "dct1", "dct2", "cat", "idct", title-pos: bottom),
+  group([Chaotic projection], (3, -1), (6, -1)),
+  group([Signal fusion], (1, 0), (3, 1), title-pos: bottom),
   group([Feature extraction], "mfcc", "x"),
   group([Evaluation], "match", "metrics", title-pos: bottom),
 )
@@ -248,10 +248,10 @@ A method diagram in three lanes: `independent-columns: true` lets each lane stac
   edge("kfold", "list", via: ((3.45, 4), (3.45, 0))),
   edge("list", "cv", "report", "viz"),
 
-  group([Preprocessing], "dataset", "load", "sig1", "sig2", "seg", "pre1", "pre2", inside: true),
-  group([Feature Engineering], "feat", "f1", "f2", "merge", "final", inside: true),
+  group([Preprocessing], (0, 0), (1, 4), inside: true),
+  group([Feature Engineering], (2, 0), (3, 3), inside: true),
   group(none, "kfold", name: "kfold-box", stretch: right),
-  group([Validation and Results], "list", "cv", "report", "viz", inside: true, stretch: bottom,
+  group([Validation and Results], (4, 0), (4, 3), inside: true, stretch: bottom,
     join: "kfold-box"),
 )
 ```
